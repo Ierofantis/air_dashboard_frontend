@@ -9,6 +9,8 @@ import Accidents from './Components/Accidents';
 import Airlines from './Components/Airlines';
 import AccidentsList from './Components/AccidentsList';
 import CalculateRisk from './Components/CalculateRisk';
+import Removed from './Components/Removed';
+import Bankcruptcy from './Components/Bankcruptcy';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,7 +20,6 @@ export default class App extends React.Component {
       value: "main"
     };
     this.handleNavigation = this.handleNavigation.bind(this);
-
   }
 
   handleNavigation(value) {
@@ -37,10 +38,11 @@ export default class App extends React.Component {
           <div className="list-group list-group-flush">
             <a href="#" onClick={this.handleNavigation.bind(this, "main")} className="list-group-item list-group-item-action bg-light">Dashboard</a>
             <a href="#" onClick={this.handleNavigation.bind(this, "airlines")} className="list-group-item list-group-item-action bg-light">Airlines</a>
-            <a href="#" onClick={this.handleNavigation.bind(this, "accidents")} className="list-group-item list-group-item-action bg-light">Add Accident</a>
+            <a href="#" onClick={this.handleNavigation.bind(this, "accidents")} className="list-group-item list-group-item-action bg-light">Add Accidents</a>
             <a href="#" onClick={this.handleNavigation.bind(this, "accidents_list")} className="list-group-item list-group-item-action bg-light">Accidents List</a>
+            <a href="#" onClick={this.handleNavigation.bind(this, "bankcruptcy")} className="list-group-item list-group-item-action bg-light">Add Bancruptcy</a>
+            <a href="#" onClick={this.handleNavigation.bind(this, "removed")} className="list-group-item list-group-item-action bg-light">Removed Airlines</a>
             <a href="#" onClick={this.handleNavigation.bind(this, "calculate")} className="list-group-item list-group-item-action bg-light">Calculate Risk</a>
-            <a href="#" onClick={this.handleNavigation.bind(this, "main")} className="list-group-item list-group-item-action bg-light">Removed Airlines</a>
           </div>
         </div>
         <div id="page-content-wrapper">
@@ -93,6 +95,12 @@ export default class App extends React.Component {
           ) : null}
           {value === "accidents_list" ? (
             <AccidentsList />
+          ) : null}
+          {value === "bankcruptcy" ? (
+            <Bankcruptcy />
+          ) : null}
+          {value === "removed" ? (
+            <Removed />
           ) : null}
           {value === "calculate" ? (
             <CalculateRisk />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AccidentsList extends React.Component {
+export default class Removed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +28,7 @@ export default class AccidentsList extends React.Component {
 
         return (
             <div className="container-fluid">
-                <h1 className="mt-4">All the accidents</h1>
+                <h1 className="mt-4">Removed Airlines</h1>
                 <table className="table">
                     <thead>
                         <tr>

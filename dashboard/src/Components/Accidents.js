@@ -7,11 +7,14 @@ export default class Accidents extends React.Component {
             airlines: [],
             airlineValue: null,
             accidentFault: null,
-            statusCreated: null
+            statusCreated: null,
+
         };
         this.handleAirlineValue = this.handleAirlineValue.bind(this);
         this.handleAirlineFault = this.handleAirlineFault.bind(this);
         this.addAccident = this.addAccident.bind(this);
+        this.handleStatus = this.handleStatus.bind(this);
+
     }
 
     componentDidMount() {
@@ -36,13 +39,19 @@ export default class Accidents extends React.Component {
     }
 
     handleAirlineFault(event) {
+        console.log(event.target.value)
         this.setState({
             accidentFault: event.target.value,
         })
     }
 
-    addAccident() {
+    handleStatus(event) {
+        this.setState({
+            statusCreated: event.target.value,
+        })
+    }
 
+    addAccident() {
         fetch(`http://192.168.99.100:5000/api/addAccident`, {
             method: 'POST',
             body: JSON.stringify({
