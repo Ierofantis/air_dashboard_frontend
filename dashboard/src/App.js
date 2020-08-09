@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './toggle.js';
-import './Welcome.js';
-import Welcome from './Welcome.js';
-import Accidents from './Accidents.js';
-import Airlines from './Airlines.js';
+import Welcome from './Components/Welcome';
+import Accidents from './Components/Accidents';
+import Airlines from './Components/Airlines';
+import AccidentsList from './Components/AccidentsList';
+import CalculateRisk from './Components/CalculateRisk';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -37,7 +38,8 @@ export default class App extends React.Component {
             <a href="#" onClick={this.handleNavigation.bind(this, "main")} className="list-group-item list-group-item-action bg-light">Dashboard</a>
             <a href="#" onClick={this.handleNavigation.bind(this, "airlines")} className="list-group-item list-group-item-action bg-light">Airlines</a>
             <a href="#" onClick={this.handleNavigation.bind(this, "accidents")} className="list-group-item list-group-item-action bg-light">Add Accident</a>
-            <a href="#" onClick={this.handleNavigation.bind(this, "main")} className="list-group-item list-group-item-action bg-light">Calculate Risk</a>
+            <a href="#" onClick={this.handleNavigation.bind(this, "accidents_list")} className="list-group-item list-group-item-action bg-light">Accidents List</a>
+            <a href="#" onClick={this.handleNavigation.bind(this, "calculate")} className="list-group-item list-group-item-action bg-light">Calculate Risk</a>
             <a href="#" onClick={this.handleNavigation.bind(this, "main")} className="list-group-item list-group-item-action bg-light">Removed Airlines</a>
           </div>
         </div>
@@ -88,6 +90,12 @@ export default class App extends React.Component {
           ) : null}
           {value === "accidents" ? (
             <Accidents />
+          ) : null}
+          {value === "accidents_list" ? (
+            <AccidentsList />
+          ) : null}
+          {value === "calculate" ? (
+            <CalculateRisk />
           ) : null}
         </div>
       </div >

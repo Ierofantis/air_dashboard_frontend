@@ -1,9 +1,4 @@
 import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'jquery/dist/jquery.min.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import './toggle.js';
 
 export default class Airlines extends React.Component {
     constructor(props) {
@@ -13,7 +8,6 @@ export default class Airlines extends React.Component {
             value: "select"
         };
         this.change = this.change.bind(this);
-
     }
 
     componentDidMount() {
