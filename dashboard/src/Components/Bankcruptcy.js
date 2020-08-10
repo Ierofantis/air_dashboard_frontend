@@ -20,7 +20,7 @@ export default class Bankcruptcy extends React.Component {
     }
 
     getAirlines() {
-        fetch(`http://192.168.99.100:5000/api/topToWorst`)
+        fetch(`http://192.168.99.100:5000/api/getAllAirlines`)
             .then(response => response.json())
             .then(data =>
                 this.setState({
@@ -75,8 +75,8 @@ export default class Bankcruptcy extends React.Component {
                     </select>
                     <select className="custom-select my-1 mr-sm-2" id="statusBankcrupt" onChange={this.handleStatusBankcrupt} value={statusBankcrupt} required>
                         <option value="select" selected>Choose state</option>
-                        <option value="true">Bankcrupt</option>
-                        <option value="false">Saved</option>
+                        <option value="true">Add</option>
+                        <option value="false">Remove</option>
                     </select>
                     <button type="submit" className="btn btn-primary my-1" onClick={this.addBankcruptcy}>Submit</button>
                 </form>
