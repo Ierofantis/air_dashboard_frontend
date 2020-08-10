@@ -14,7 +14,7 @@ export default class AccidentsList extends React.Component {
     }
 
     getAccidents() {
-        fetch(`http://192.168.99.100:5000/api/getTheAccidents `)
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/getTheAccidents `)
             .then(response => response.json())
             .then(data =>
                 this.setState({

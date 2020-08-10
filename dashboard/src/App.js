@@ -13,7 +13,7 @@ import Removed from './Components/Removed';
 import Bankcruptcy from './Components/Bankcruptcy';
 import Registration from './Components/Registration';
 import Login from './Components/Login';
-
+require('dotenv').config();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class App extends React.Component {
   };
 
   authenticateRoutes() {
-    fetch(`http://192.168.99.100:5000/api/authorizeRoutes`, {
+    fetch(`${process.env.REACT_APP_HOST}:5000/api/authorizeRoutes`, {
       method: 'POST',
       body: JSON.stringify({
         "email": localStorage.getItem("email"),

@@ -20,7 +20,7 @@ export default class Bankcruptcy extends React.Component {
     }
 
     getAirlines() {
-        fetch(`http://192.168.99.100:5000/api/getAllAirlines`)
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/getAllAirlines`)
             .then(response => response.json())
             .then(data =>
                 this.setState({
@@ -43,7 +43,7 @@ export default class Bankcruptcy extends React.Component {
     }
 
     addBankcruptcy() {
-        fetch(`http://192.168.99.100:5000/api/addBankcruptcy`, {
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/addBankcruptcy`, {
             method: 'POST',
             body: JSON.stringify({
                 "status": this.state.statusBankcrupt,

@@ -1,4 +1,5 @@
 import React from 'react';
+require('dotenv').config();
 
 export default class Airlines extends React.Component {
     constructor(props) {
@@ -11,14 +12,14 @@ export default class Airlines extends React.Component {
     }
 
     componentDidMount() {
-        this.orderMethod(`http://192.168.99.100:5000/api/topToWorst`)
+        this.orderMethod(`${process.env.REACT_APP_HOST}:5000/api/topToWorst`)
     }
 
     change(event) {
         if (event.target.value === "descending") {
-            this.orderMethod(`http://192.168.99.100:5000/api/worstToTop`, event.target.value)
+            this.orderMethod(`${process.env.REACT_APP_HOST}:5000/api/worstToTop`, event.target.value)
         } else {
-            this.orderMethod(`http://192.168.99.100:5000/api/topToWorst`, event.target.value)
+            this.orderMethod(`${process.env.REACT_APP_HOST}:5000/api/topToWorst`, event.target.value)
         }
 
     }

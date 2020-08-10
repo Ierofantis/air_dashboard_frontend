@@ -26,7 +26,7 @@ export default class loign extends React.Component {
     }
 
     login() {
-        fetch(`http://192.168.99.100:5000/api/login`, {
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/login`, {
             method: 'POST',
             body: JSON.stringify({
                 "email": this.state.email,

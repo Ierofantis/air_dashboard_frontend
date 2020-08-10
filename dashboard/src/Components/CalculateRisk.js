@@ -37,7 +37,7 @@ export default class CalculateRisk extends React.Component {
     }
 
     getAirlines() {
-        fetch(`http://192.168.99.100:5000/api/topToWorst`)
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/topToWorst`)
             .then(response => response.json())
             .then(data =>
                 this.setState({
@@ -48,7 +48,7 @@ export default class CalculateRisk extends React.Component {
     }
 
     calculateRisk() {
-        fetch(`http://192.168.99.100:5000/api/calculateRisk`, {
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/calculateRisk`, {
             method: 'POST',
             body: JSON.stringify({
                 "airlineRanking": this.state.airlineRanking,

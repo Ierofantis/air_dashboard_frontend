@@ -21,7 +21,7 @@ export default class Accidents extends React.Component {
     }
 
     getAirlines() {
-        fetch(`http://192.168.99.100:5000/api/topToWorst`)
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/topToWorst`)
             .then(response => response.json())
             .then(data =>
                 this.setState({
@@ -50,7 +50,7 @@ export default class Accidents extends React.Component {
     }
 
     addAccident() {
-        fetch(`http://192.168.99.100:5000/api/addAccident`, {
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/addAccident`, {
             method: 'POST',
             body: JSON.stringify({
                 "accident": this.state.accidentFault,

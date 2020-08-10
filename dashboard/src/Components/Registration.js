@@ -33,7 +33,7 @@ export default class Registration extends React.Component {
     }
 
     signup() {
-        fetch(`http://192.168.99.100:5000/api/signup`, {
+        fetch(`${process.env.REACT_APP_HOST}:5000/api/signup`, {
             method: 'POST',
             body: JSON.stringify({
                 "username": this.state.user,
