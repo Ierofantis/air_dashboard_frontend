@@ -38,7 +38,6 @@ export default class Accidents extends React.Component {
     }
 
     handleAirlineFault(event) {
-        console.log(event.target.value)
         this.setState({
             accidentFault: event.target.value,
         })
