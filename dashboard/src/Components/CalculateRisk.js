@@ -60,7 +60,7 @@ export default class CalculateRisk extends React.Component {
 
         }).then(res => res.json())
             .then(response => this.setState({
-                risk: JSON.stringify(response),
+                risk: response.risk_index,
             }))
             .catch(error => console.error('Error:', error));
     }
@@ -85,7 +85,16 @@ export default class CalculateRisk extends React.Component {
                     />
                     <button type="submit" className="btn btn-primary my-1" onClick={this.calculateRisk}>Submit</button>
                 </form>
-                {risk}
+                {risk != null &&
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×</button>
+                        <span class="glyphicon glyphicon-ok"></span> <strong>The risk index is</strong>
+                        <hr class="message-inner-separator" />
+                        <p>
+                            {risk}</p>
+                    </div>
+                }
             </div>
         );
     }

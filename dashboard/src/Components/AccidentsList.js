@@ -37,7 +37,7 @@ export default class AccidentsList extends React.Component {
                     <thead>
                         <tr>
                             <th scope="col">AirlineId</th>
-                            <th scope="col">Accident</th>
+                            <th scope="col">Accidents Reports</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +45,7 @@ export default class AccidentsList extends React.Component {
                             <React.Fragment>
                                 <tr>
                                     <th scope="row">{item.name}</th>
-                                    <td> {item.accidents.length > 0 ? JSON.stringify(item.accidents) : "No accident"}</td>
+                                    <td> {item.accidents.length > 0 ? item.accidents.map((items) => JSON.stringify(items)) : "No accident"}</td>
                                 </tr>
 
                             </React.Fragment>

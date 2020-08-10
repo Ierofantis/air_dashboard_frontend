@@ -62,7 +62,7 @@ export default class Accidents extends React.Component {
             }
         }).then(res => res.json())
             .then(response => console.log('Success:', this.setState({
-                statusCreated: JSON.stringify(response),
+                statusCreated: response.msg,
             })))
             .catch(error => console.error('Error:', error));
     }
@@ -90,7 +90,16 @@ export default class Accidents extends React.Component {
                     </select>
                     <button type="submit" className="btn btn-primary my-1" onClick={this.addAccident}>Submit</button>
                 </form>
-                {statusCreated}
+                {statusCreated != null &&
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×</button>
+                        <span class="glyphicon glyphicon-ok"></span> <strong>Success Message</strong>
+                        <hr class="message-inner-separator" />
+                        <p>
+                            {statusCreated}</p>
+                    </div>
+                }
             </div>
         );
     }
