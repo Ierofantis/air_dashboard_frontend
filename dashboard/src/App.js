@@ -11,15 +11,23 @@ import AccidentsList from './Components/AccidentsList';
 import CalculateRisk from './Components/CalculateRisk';
 import Removed from './Components/Removed';
 import Bankcruptcy from './Components/Bankcruptcy';
+import Registration from './Components/Registration';
+import Login from './Components/Login';
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       airlines: [],
-      value: "main"
+      value: "main",
+      authorize: false
     };
     this.handleNavigation = this.handleNavigation.bind(this);
+  }
+
+  componentDidMount() {
+    this.authenticateRoutes()
   }
 
   handleNavigation(value) {
@@ -27,8 +35,30 @@ export default class App extends React.Component {
       value: value
     })
   };
+
+  authenticateRoutes() {
+    fetch(`http://192.168.99.100:5000/api/authorizeRoutes`, {
+      method: 'POST',
+      body: JSON.stringify({
+        "email": localStorage.getItem("email"),
+        "password": localStorage.getItem("token")
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+      .then(response => this.setState({
+        authorize: response.success === true ? true : false,
+      }))
+      .catch(error => console.error('Error:', error));
+  }
+
+  logout() {
+    localStorage.clear();
+    window.location.reload();
+  }
   render() {
-    const { value } = this.state;
+    const { value, authorize } = this.state;
 
     return (
       <div className="d-flex" id="wrapper" >
@@ -46,24 +76,8 @@ export default class App extends React.Component {
           </div>
         </div>
         <div id="page-content-wrapper">
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Registration />
+          <Login />
           <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -74,37 +88,40 @@ export default class App extends React.Component {
                     Hi User
                </a>
                   <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">Login</a>
-                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">Register</a>
+                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#login">Login</a>
+                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#registration">Register</a>
                     <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#">Exit</a>
+                    <a className="dropdown-item" onClick={this.logout}>Exit</a>
                   </div>
                 </li>
               </ul>
             </div>
           </nav>
-
-          {value === "main" ? (
-            <Welcome />
-          ) : null}
-          {value === "airlines" ? (
-            <Airlines />
-          ) : null}
-          {value === "accidents" ? (
-            <Accidents />
-          ) : null}
-          {value === "accidents_list" ? (
-            <AccidentsList />
-          ) : null}
-          {value === "bankcruptcy" ? (
-            <Bankcruptcy />
-          ) : null}
-          {value === "removed" ? (
-            <Removed />
-          ) : null}
-          {value === "calculate" ? (
-            <CalculateRisk />
-          ) : null}
+          {authorize === true &&
+            <div>
+              {value === "main" ? (
+                <Welcome />
+              ) : null}
+              {value === "airlines" ? (
+                <Airlines />
+              ) : null}
+              {value === "accidents" ? (
+                <Accidents />
+              ) : null}
+              {value === "accidents_list" ? (
+                <AccidentsList />
+              ) : null}
+              {value === "bankcruptcy" ? (
+                <Bankcruptcy />
+              ) : null}
+              {value === "removed" ? (
+                <Removed />
+              ) : null}
+              {value === "calculate" ? (
+                <CalculateRisk />
+              ) : null}
+            </div>
+          }
         </div>
       </div >
 

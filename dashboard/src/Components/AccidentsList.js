@@ -1,15 +1,19 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
 
 export default class AccidentsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            accidents: []
+            accidents: [],
+            token: localStorage.getItem("token")
         };
     }
 
     componentDidMount() {
         this.getAccidents()
+        var decoded = jwtDecode('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTcwNjIyMzl9.8sRTbQEXyPq_2u03nk9_MGOKlsWvC4W0OZcYww9RqKM');
+        console.log("token", decoded);
     }
 
     getAccidents() {
@@ -41,7 +45,7 @@ export default class AccidentsList extends React.Component {
                             <React.Fragment>
                                 <tr>
                                     <th scope="row">{item.name}</th>
-                                    <th> {item.accidents.length > 0 ? JSON.stringify(item.accidents) : "No accident"}</th>
+                                    <td> {item.accidents.length > 0 ? JSON.stringify(item.accidents) : "No accident"}</td>
                                 </tr>
 
                             </React.Fragment>

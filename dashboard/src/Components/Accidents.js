@@ -14,7 +14,6 @@ export default class Accidents extends React.Component {
         this.handleAirlineFault = this.handleAirlineFault.bind(this);
         this.addAccident = this.addAccident.bind(this);
         this.handleStatus = this.handleStatus.bind(this);
-
     }
 
     componentDidMount() {
