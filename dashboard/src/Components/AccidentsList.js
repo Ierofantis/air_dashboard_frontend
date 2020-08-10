@@ -5,15 +5,12 @@ export default class AccidentsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            accidents: [],
-            token: localStorage.getItem("token")
+            accidents: []
         };
     }
 
     componentDidMount() {
-        this.getAccidents()
-        var decoded = jwtDecode('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTcwNjIyMzl9.8sRTbQEXyPq_2u03nk9_MGOKlsWvC4W0OZcYww9RqKM');
-        console.log("token", decoded);
+        this.getAccidents();
     }
 
     getAccidents() {
@@ -47,7 +44,6 @@ export default class AccidentsList extends React.Component {
                                     <th scope="row">{item.name}</th>
                                     <td> {item.accidents.length > 0 ? item.accidents.map((items) => JSON.stringify(items)) : "No accident"}</td>
                                 </tr>
-
                             </React.Fragment>
                         )}
                     </tbody>
