@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'jquery/dist/jquery.min.js';
@@ -85,13 +85,13 @@ export default class App extends React.Component {
 
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hi User
-               </a>
+                    Hi {localStorage.getItem("token") !== null ? localStorage.getItem("email") : "User"}
+                  </a>
                   <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a className="dropdown-item" href="#" data-toggle="modal" data-target="#login">Login</a>
                     <a className="dropdown-item" href="#" data-toggle="modal" data-target="#registration">Register</a>
                     <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" onClick={this.logout}>Exit</a>
+                    <a className="dropdown-item" href="#" onClick={this.logout}>Exit</a>
                   </div>
                 </li>
               </ul>
