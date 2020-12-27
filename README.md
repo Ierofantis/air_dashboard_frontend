@@ -1,4 +1,4 @@
-# MobitAir frontend
+# Air frontend
 
 # Installation instructions
 
